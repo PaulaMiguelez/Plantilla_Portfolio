@@ -12,6 +12,8 @@
 	--bs-primary: #6366f1;
 	--bs-primary-rgb: 99, 102, 241;
 
+	--font1: "Jersey 10", sans-serif;
+
 	/* Custom tokens */
 	--color-bg-alt: #1a1a1a;
 	--color-muted: #6c757d;
@@ -35,6 +37,8 @@ body {
 	padding-top: 6rem !important;
 	padding-bottom: 6rem !important;
 }
+
+
 
 /* --------------------------------------------------------------------------
    3. Navigation
@@ -123,9 +127,9 @@ body {
 	left: 30%;
 }
 
-.hero-title {
+/* .hero-title {
 	letter-spacing: -0.03em;
-}
+} */
 
 .hero-subtitle {
 	opacity: 0.8;
@@ -326,6 +330,7 @@ body {
 @media (max-width: 991.98px) {
 	.hero-title {
 		font-size: 3rem;
+		font-family: var(--font1);
 	}
 
 	.shape {
