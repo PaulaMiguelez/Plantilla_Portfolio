@@ -1,62 +1,83 @@
 /* ==========================================================================
-   Grade 2: Bootstrap + GSAP Portfolio Demo
-   Custom styles extending Bootstrap 5
+   Portfolio Creepy / Creepypasta Style
+   Extiende Bootstrap 5 + GSAP
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. CSS Custom Properties
+   1. CSS Custom Properties / Tokens
    -------------------------------------------------------------------------- */
 :root {
-	--bs-body-bg: #0f0f0f;
-	--bs-body-color: #f5f5f5;
-	--bs-primary: #6366f1;
-	--bs-primary-rgb: 99, 102, 241;
+	/* Colores principales */
+	--color-bg: #050505;
+	--color-bg-alt: #0b0b0b;
+	--color-fg: #D6D6D6;
+	--color-muted: #6c6c6c;
 
-	--font1: "Jersey 10", sans-serif;
+	/* Acento creepy */
+	--color-accent: #b60000;      
+	--color-accent-alt: #4b0000;
+	--color-highlight: #d6b784;   
 
-	/* Custom tokens */
-	--color-bg-alt: #1a1a1a;
-	--color-muted: #6c757d;
+	/* Tipografías */
+	--title-font: "Jersey 10", sans-serif;
+	--body-font: "IBM Plex Mono", monospace;
+
+	/* Tamaños y medidas */
+	--radius: 0.35rem;
 	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+	/* Distorsión */
+	--crt-blur: 0.6px;
+	--crt-scan-opacity: 0.12;
 }
 
 /* --------------------------------------------------------------------------
    2. Base Overrides
    -------------------------------------------------------------------------- */
 body {
-	background-color: var(--bs-body-bg);
-	color: var(--bs-body-color);
+	background-color: var(--color-bg);
+	color: var(--color-fg);
+	font-family: var(--body-font);
+	position: relative;
 }
 
-.bg-dark {
-	background-color: var(--color-bg-alt) !important;
+/* efecto CRT ligero */
+body::after {
+	content: "";
+	pointer-events: none;
+	position: fixed;
+	inset: 0;
+	background: repeating-linear-gradient(
+		to bottom,
+		rgba(255,255,255,var(--crt-scan-opacity)),
+		rgba(0,0,0,0) 1px,
+		rgba(0,0,0,0) 3px
+	);
+	mix-blend-mode: overlay;
+	opacity: 0.25;
 }
-
-/* Section spacing */
-.py-lg-6 {
-	padding-top: 6rem !important;
-	padding-bottom: 6rem !important;
-}
-
-
 
 /* --------------------------------------------------------------------------
    3. Navigation
    -------------------------------------------------------------------------- */
 .navbar {
-	background: rgba(15, 15, 15, 0.85);
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
-	transition: background 0.3s;
+	background: rgba(0,0,0,0.85);
+	backdrop-filter: blur(8px);
+	font-family: var(--body-font);
 }
 
-.navbar.scrolled {
-	background: rgba(15, 15, 15, 0.95);
+.navbar-brand {
+	font-family: var(--title-font);
+	font-size: 2.4rem;
+	letter-spacing: -0.03em;
+	color: var(--color-accent) !important;
+	/* text-transform: lowercase; */
 }
 
 .nav-link {
 	position: relative;
-	padding: 0.5rem 1rem !important;
+	color: var(--color-fg) !important;
+	font-size: 0.9rem;
 }
 
 .nav-link::after {
@@ -66,7 +87,7 @@ body {
 	left: 50%;
 	width: 0;
 	height: 2px;
-	background: var(--bs-primary);
+	background: var(--color-accent);
 	transition: width 0.3s, left 0.3s;
 }
 
@@ -80,280 +101,148 @@ body {
    4. Hero Section
    -------------------------------------------------------------------------- */
 .hero {
-	background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+	background: radial-gradient(ellipse at center, #130000 0%, #000000 80%);
 }
 
-.hero-bg {
-	background: inherit;
-	z-index: 0;
+.hero-title {
+	font-family: var(--title-font);
+	font-size: 7rem;
+	color: var(--color-accent);
+	text-shadow: 0px 0px 12px rgba(150,0,0,0.6);
+	/* letter-spacing: -0.04em; */
+	/* text-transform: lowercase; */
 }
 
-/* Floating shapes */
-.floating-shapes {
-	position: absolute;
-	inset: 0;
-	overflow: hidden;
-	z-index: 0;
+.hero-subtitle {
+	color: var(--color-highlight);
+	font-size: 1.1rem;
+	opacity: 0.9;
 }
 
-.shape {
-	position: absolute;
-	border-radius: 50%;
-	filter: blur(60px);
-	opacity: 0.4;
+/* shapes -> distorsión */
+/* .shape {
+	border-radius: 0;
+	filter: blur(30px) contrast(180%);
+	opacity: 0.35;
 }
 
 .shape-1 {
-	width: 400px;
-	height: 400px;
-	background: var(--bs-primary);
-	top: 10%;
-	left: 10%;
+	background: var(--color-accent);
 }
 
 .shape-2 {
-	width: 300px;
-	height: 300px;
-	background: #ec4899;
-	top: 60%;
-	right: 10%;
+	background: var(--color-accent-alt);
 }
 
 .shape-3 {
-	width: 250px;
-	height: 250px;
-	background: #14b8a6;
-	bottom: 10%;
-	left: 30%;
-}
-
-/* .hero-title {
-	letter-spacing: -0.03em;
+	background: var(--color-highlight);
 } */
 
-.hero-subtitle {
-	opacity: 0.8;
+.scroll-indicator .mouse {
+	border-color: var(--color-accent);
 }
 
-/* Scroll indicator */
-.scroll-indicator {
-	z-index: 10;
-}
-
-.mouse {
-	width: 26px;
-	height: 42px;
-	border: 2px solid rgba(255, 255, 255, 0.5);
-	border-radius: 13px;
-	position: relative;
-}
-
-.mouse::after {
-	content: '';
-	position: absolute;
-	top: 8px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 4px;
-	height: 8px;
-	background: rgba(255, 255, 255, 0.7);
-	border-radius: 2px;
-	animation: scrollMouse 1.5s ease-in-out infinite;
-}
-
-@keyframes scrollMouse {
-	0%, 100% {
-		opacity: 1;
-		transform: translateX(-50%) translateY(0);
-	}
-	50% {
-		opacity: 0.3;
-		transform: translateX(-50%) translateY(12px);
-	}
+.scroll-indicator .mouse::after {
+	background: var(--color-accent);
 }
 
 /* --------------------------------------------------------------------------
    5. About Section
    -------------------------------------------------------------------------- */
-.about-image {
-	position: relative;
-}
-
-.about-image::before {
-	content: '';
-	position: absolute;
-	inset: 20px -20px -20px 20px;
-	border: 2px solid var(--bs-primary);
-	border-radius: 1rem;
-	z-index: -1;
+.bg-dark {
+	background-color: var(--color-bg-alt) !important;
 }
 
 .about-image img {
-	position: relative;
-	z-index: 1;
+	filter: grayscale(100%) contrast(120%);
+	border-radius: var(--radius);
+	box-shadow: 0 0 40px rgba(100,0,0,0.4);
 }
 
-/* Skills progress bars */
+h2 {
+	font-family: var(--title-font);
+	color: var(--color-accent);
+	/* text-transform: lowercase; */
+}
+
+p {
+	color: var(--color-fg);
+}
+
+/* progress bars */
 .progress {
-	background-color: rgba(255, 255, 255, 0.1);
-	border-radius: 4px;
-	overflow: hidden;
+	background-color: rgba(255,255,255,0.05);
 }
 
 .progress-bar {
-	background: linear-gradient(90deg, var(--bs-primary), #818cf8);
-	border-radius: 4px;
-	width: 0; /* Animated by GSAP */
+	background: linear-gradient(90deg, var(--color-accent), var(--color-accent-alt));
 }
 
 /* --------------------------------------------------------------------------
    6. Projects Section
    -------------------------------------------------------------------------- */
 .project-card {
-	background: var(--color-bg-alt);
-	border-radius: 1rem;
-	overflow: hidden;
+	background: #0d0d0d;
+	border: 1px solid rgba(255,255,255,0.07);
 	transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
 }
 
 .project-card:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.card-img-wrapper {
-	aspect-ratio: 4/3;
+	transform: translateY(-6px);
+	box-shadow: 0 0 28px rgba(150,0,0,0.35);
 }
 
 .card-img-wrapper img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	transition: transform 0.6s var(--ease-out);
+	filter: grayscale(100%) contrast(130%);
 }
 
-.project-card:hover .card-img-wrapper img {
-	transform: scale(1.08);
-}
-
-.card-body {
-	padding: 1.5rem;
-}
-
-.card-title {
-	margin-bottom: 0.75rem;
-}
-
-/* Badge styling */
-.bg-primary-subtle {
-	background-color: rgba(99, 102, 241, 0.15) !important;
-}
-
-.text-primary {
-	color: var(--bs-primary) !important;
+.badge {
+	background-color: rgba(180,0,0,0.15) !important;
+	color: var(--color-accent) !important;
+	border-radius: 2px;
 }
 
 /* --------------------------------------------------------------------------
    7. Contact Section
    -------------------------------------------------------------------------- */
 .social-links a {
-	transition: color 0.3s, transform 0.3s;
+	color: var(--color-muted) !important;
 }
 
 .social-links a:hover {
-	color: var(--bs-primary) !important;
-	transform: translateY(-3px);
+	color: var(--color-accent) !important;
+	transform: translateY(-4px);
 }
 
-/* --------------------------------------------------------------------------
-   8. Buttons
-   -------------------------------------------------------------------------- */
 .btn-primary {
-	background: var(--bs-primary);
-	border-color: var(--bs-primary);
-	padding: 0.75rem 2rem;
-	font-weight: 600;
-	transition: transform 0.3s, box-shadow 0.3s;
+	background: var(--color-accent);
+	border-color: var(--color-accent);
 }
 
 .btn-primary:hover {
-	background: #818cf8;
-	border-color: #818cf8;
-	transform: translateY(-2px);
-	box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-}
-
-.btn-outline-light {
-	padding: 0.75rem 2rem;
-	font-weight: 600;
-}
-
-.btn-outline-light:hover {
-	transform: translateY(-2px);
+	background: var(--color-accent-alt);
 }
 
 /* --------------------------------------------------------------------------
-   9. Utilities
+   8. Footer
    -------------------------------------------------------------------------- */
-.z-1 {
-	z-index: 1;
+footer {
+	color: var(--color-muted);
+	font-size: 0.8rem;
+	opacity: 0.8;
 }
 
 /* --------------------------------------------------------------------------
-   10. Accessibility: Reduced Motion
-   -------------------------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-	}
-
-	.shape {
-		display: none;
-	}
-
-	.project-card:hover {
-		transform: none;
-	}
-
-	.project-card:hover .card-img-wrapper img {
-		transform: none;
-	}
-}
-
-/* --------------------------------------------------------------------------
-   11. Responsive Adjustments
+   9. Responsive tweaks
    -------------------------------------------------------------------------- */
 @media (max-width: 991.98px) {
 	.hero-title {
-		font-size: 3rem;
-		font-family: var(--font1);
-	}
-
-	.shape {
-		transform: scale(0.6);
+		font-size: 4.2rem;
 	}
 }
 
 @media (max-width: 575.98px) {
 	.hero-title {
-		font-size: 2.5rem;
-	}
-
-	.hero-cta .btn {
-		display: block;
-		width: 100%;
-		margin-bottom: 1rem;
-	}
-
-	.hero-cta .btn:last-child {
-		margin-bottom: 0;
-	}
-
-	.about-image::before {
-		display: none;
+		font-size: 3.2rem;
 	}
 }
