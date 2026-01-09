@@ -23,7 +23,7 @@
 	--body-font: "IBM Plex Mono", monospace;
 
 	/* Tamaños y medidas */
-	--radius: 0.35rem;
+	/* --radius: 0.35rem; */
 	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
 	/* Distorsión */
@@ -61,7 +61,7 @@ body::after {
    3. Navigation
    -------------------------------------------------------------------------- */
 .navbar {
-	background: rgba(0,0,0,0.85);
+	background: #b60000a0;
 	backdrop-filter: blur(8px);
 	font-family: var(--body-font);
 }
@@ -70,7 +70,7 @@ body::after {
 	font-family: var(--title-font);
 	font-size: 2.4rem;
 	letter-spacing: -0.03em;
-	color: var(--color-accent) !important;
+	color: var(--color-bg) !important;
 	/* text-transform: lowercase; */
 }
 
@@ -101,7 +101,7 @@ body::after {
    4. Hero Section
    -------------------------------------------------------------------------- */
 .hero {
-	background: radial-gradient(ellipse at center, #130000 0%, #000000 80%);
+	background-image: url('https://ik.imagekit.io/5j1nn8q0xy/Plantilla-Creepfolio/fondo_intro.png');
 }
 
 .hero-title {
@@ -119,24 +119,6 @@ body::after {
 	opacity: 0.9;
 }
 
-/* shapes -> distorsión */
-/* .shape {
-	border-radius: 0;
-	filter: blur(30px) contrast(180%);
-	opacity: 0.35;
-}
-
-.shape-1 {
-	background: var(--color-accent);
-}
-
-.shape-2 {
-	background: var(--color-accent-alt);
-}
-
-.shape-3 {
-	background: var(--color-highlight);
-} */
 
 .scroll-indicator .mouse {
 	border-color: var(--color-accent);
@@ -158,6 +140,7 @@ body::after {
 	border-radius: var(--radius);
 	box-shadow: 0 0 40px rgba(100,0,0,0.4);
 }
+
 
 h2 {
 	font-family: var(--title-font);
@@ -214,13 +197,19 @@ p {
 	transform: translateY(-4px);
 }
 
+.btn {
+	border-radius: 0;
+}
+
 .btn-primary {
-	background: var(--color-accent);
+	background: var(--color-bg);
 	border-color: var(--color-accent);
+	color: var(--color-accent);
 }
 
 .btn-primary:hover {
 	background: var(--color-accent-alt);
+	border-color: var(--color-accent-alt);
 }
 
 /* --------------------------------------------------------------------------
