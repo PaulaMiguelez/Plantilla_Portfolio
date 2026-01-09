@@ -35,7 +35,7 @@
    2. Base Overrides
    -------------------------------------------------------------------------- */
 body {
-	background-color: var(--color-bg);
+	background-color: var(--color-bg-alt);
 	color: var(--color-fg);
 	font-family: var(--body-font);
 	position: relative;
@@ -149,7 +149,7 @@ body::after {
    5. About Section
    -------------------------------------------------------------------------- */
 .bg-dark {
-	background-color: var(--color-bg-alt) !important;
+	background-color: var(--color-bg) !important;
 }
 
 
@@ -342,6 +342,26 @@ p {
 	background: var(--color-accent-alt);
 	border-color: var(--color-accent-alt);
 }
+
+/* GIF  */
+.contact-gif {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-gif img {
+    width: 300px;    /* tamaño mediano */
+    max-width: 100%;
+    height: auto;
+    image-rendering: crisp-edges; /* opcional si es pixelado/retro */
+}
+
+.contact-gif img:hover {
+    transform: translateY(-2px);
+    filter: contrast(150%) saturate(180%);
+}
+
 
 /* --------------------------------------------------------------------------
    8. Footer
