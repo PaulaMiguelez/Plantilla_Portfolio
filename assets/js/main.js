@@ -239,17 +239,7 @@ function initHeroAnimations() {
 		},
 	});
 
-	// Floating shapes also have parallax (slower than background)
-	gsap.to('.floating-shapes', {
-		yPercent: 20,      // Moves less than background (less parallax)
-		ease: 'none',
-		scrollTrigger: {
-			trigger: '.hero',
-			start: 'top top',
-			end: 'bottom top',
-			scrub: true,
-		},
-	});
+
 }
 
 // ==========================================================================
