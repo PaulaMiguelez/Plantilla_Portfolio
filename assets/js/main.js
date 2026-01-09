@@ -383,26 +383,26 @@ function initSkillBars() {
  *
  * This creates the cascading "wave" effect.
  */
-function initProjectCards() {
-	if (prefersReducedMotion) return;
+// function initProjectCards() {
+// 	if (prefersReducedMotion) return;
 
-	ScrollTrigger.batch('.project-card', {
-		/**
-		 * onEnter receives an array of ALL elements that just entered the viewport
-		 * (in this scroll frame). We animate them as a batch with stagger.
-		 */
-		onEnter: (batch) =>
-			gsap.from(batch, {
-				y: 60,           // Start 60px below
-				opacity: 0,      // Start invisible
-				duration: 0.8,
-				stagger: 0.15,   // 0.15s delay between each card
-				ease: 'power2.out',
-			}),
-		start: 'top 90%',   // Trigger when card top hits 90% of viewport
-		once: true,          // Only animate once (no re-triggering on scroll back)
-	});
-}
+// 	ScrollTrigger.batch('.project-card', {
+// 		/**
+// 		 * onEnter receives an array of ALL elements that just entered the viewport
+// 		 * (in this scroll frame). We animate them as a batch with stagger.
+// 		 */
+// 		onEnter: (batch) =>
+// 			gsap.from(batch, {
+// 				y: 60,           // Start 60px below
+// 				opacity: 0,      // Start invisible
+// 				duration: 0.8,
+// 				stagger: 0.15,   // 0.15s delay between each card
+// 				ease: 'power2.out',
+// 			}),
+// 		start: 'top 90%',   // Trigger when card top hits 90% of viewport
+// 		once: true,          // Only animate once (no re-triggering on scroll back)
+// 	});
+// }
 
 // ==========================================================================
 // 6. NAVBAR BACKGROUND ON SCROLL
