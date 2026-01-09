@@ -229,7 +229,7 @@ p {
 /* --------------------------------------------------------------------------
    6. Projects Section
    -------------------------------------------------------------------------- */
-.project-card {
+/* .project-card {
 	background: #0d0d0d;
 	border: 1px solid rgba(255,255,255,0.07);
 	transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
@@ -238,21 +238,68 @@ p {
 .project-card:hover {
 	transform: translateY(-6px);
 	box-shadow: 0 0 28px rgba(150,0,0,0.35);
-}
-
-/* .card-img-wrapper img {
-	filter: grayscale(100%) contrast(130%);
 } */
 
-.badge {
-	background-color: rgba(180,0,0,0.15) !important;
-	color: var(--color-accent) !important;
-	border-radius: 2px;
+
+.project-card {
+	background: var(--color-bg);
+	border: 2px solid var(--color-accent);
+	position: relative;
+	overflow: visible;
+	transform: translate(0,0);
+	transition: transform .15s ease-out;
 }
 
-.card-title {
-	color: var(--color-fg);
+.project-card::before {
+	content: "";
+	position: absolute;
+	top: -2px; left: -2px; right: -2px; bottom: -2px;
+	border: 2px solid var(--color-accent);
+	background: var(--color-accent-alt);
+	z-index: -1;
+	transform: translate(6px,6px);
+	transition: transform .15s ease-out;
 }
+
+.project-card:hover {
+	transform: translate(-4px,-4px);
+}
+
+.project-card:hover::before {
+	transform: translate(10px,10px);
+}
+
+/* img con borde */
+.project-card .card-img-top {
+	border: 2px solid var(--color-accent);
+	display: block;
+	width: 100%;
+}
+
+/* tags */
+.project-card .badge {
+	background: transparent !important;
+	color: var(--color-highlight) !important;
+	border: 1px solid var(--color-accent);
+	border-radius: 0;
+	padding: 2px 5px;
+	font-size: 0.7rem;
+}
+
+/* textos */
+.project-card .card-title {
+	color: var(--color-fg) !important;
+	font-family: var(--title-font);
+}
+
+.project-card .card-text {
+	color: var(--color-fg) !important;
+	opacity: .85;
+	font-size: 0.85rem;
+}
+
+
+
 
 /* --------------------------------------------------------------------------
    7. Contact Section
